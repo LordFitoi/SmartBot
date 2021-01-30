@@ -9,6 +9,13 @@ memoria de entrenamiento para poder reducir cualquier ruido que produsca las pal
 prefijos y sufijos distintos o que sean de la misma familia mas no esten escritas de la
 misma forma.
 
+Ejemplo de preprocesamiento:
+```
+¿Estas jugando a Minecraft? -> ¿ estar jugar a minecraft ?
+Te gusta comer chocolate -> te gustar comer chocolate
+¿Quién eres? -> ¿ quién ser ?
+```
+
 Para poder probarlo, solo necesitas correr el archivo "main.py", y para poder obtener una
 respuesta del bot solo necesitas instanciar la clase BotBody y hacer un simple call del
 objeto pasando el texto del usuario.
