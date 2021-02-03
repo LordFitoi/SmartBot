@@ -14,7 +14,9 @@ a la salida del clasificador anterior da el trozo correspondiente de la parte de
 encadenados se tenga. Tambien lo podemos expresar de la siguiente forma.
 
 > <img src="https://render.githubusercontent.com/render/math?math=fn%20=%20NaiveBayesClassificator">
+
 > <img src="https://render.githubusercontent.com/render/math?math=M%20=%20[f1,%20f2,%20%20...%20%20fn]">
+
 > <img src="https://render.githubusercontent.com/render/math?math=fn(Vector(Context,%20Wn))=%20Wn+1">
 
 > *Nota: Este modelo es meramente experimental.*
