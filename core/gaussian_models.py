@@ -70,8 +70,17 @@ class GaussianChainModel:
         """Permite entrenar el vectorizador de texto"""
         self.vectorizer.fit(documents)
 
+    def step_train(self, documents : list) -> None:
+        """Permite entrenar el modelo durante la ejecucion"""
+        x_input_list, y_input_list = self.create_dataset(documents)
+
+        for i in range(len(self.chain)):
+            if not x_input_list[i] or not y_input_list[i]: break
+            self.chain[i].partial_fit(x_input_list[i], y_input_list[i])
+            self.max_train_length = i
+
     def train(self, documents : list) -> None:
-        """Permite entrenar el modelo con los datos de entrenamientos creados previamente."""
+        """Permite entrenar el modelo con los datos de entrenamientos creados previamente"""
         x_input_list, y_input_list = self.create_dataset(documents)
 
         for i in range(len(self.chain)):

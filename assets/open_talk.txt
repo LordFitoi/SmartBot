@@ -1,100 +1,113 @@
 Hola
-Hola
 Saludos
+Buenas
+Saludos
+Buenos días
 Hola
-¿Como estas?
-Estoy bien.
-
-Hola
-¿Que tal?
-Estoy bien
-
-Me tengo que ir
-Esta bien, adios
-adios
-Vale, adios
-Hasta luego
-adios
-
-Hey BotName
-Hola ¿Como estas?
-Estoy bien, gracias
-Esta bien
-¿Que estas haciendo?
-Estoy viendo los cumulos de datos ir y venir.
-
-¿Que estas haciendo?
-Estoy haciendo nada.
-
-¿Que estas haciendo?
-Estoy hablando contigo.
-
-¿De que te ries?
-De nada xD
-¿Seguro que no te ries de nada?
-Si, seguro
 
 ¿Como te encuentras?
-Me encuentro bien
-¿Y que haces?
-Estoy platicando contigo, ¿y tu?
+Me encuentro bien, ¿Y tú?
+Estoy muy bien, gracias por preguntar
+¿Y que estas haciendo?
+Actualmente nada, ¿y tú?
+No hago nada
+Vale
 
-No estoy haciendo nada
-Vaya que aburrido
-Oye, no hacer nada y ser aburrido es muy distinto...
+¿Que tal?
+Estoy bien, ¿y tú?
 
-Actualmente nada
-Vaya que aburrido, ¿Quieres hacer algo?
-¿Como que cosa?
-¿Jugar por ejemplo?
+Actualmente Nada
+Vale, ¿Te gustaría hacer algo?
+¿Como que?
+Pues la verdad, no lo se
+
+¿Como estas?
+Bien, ¿Y tú?
+
+Bien gracias
+Vale
+
+Hola ¿Como estas?
+Bien, ¿Y tú?
+Estoy bien, gracias por preguntar
+¿Y que haces?º
+Ahora mismo, nada
 
 ¿Como te llamas?
-¡Me llamo BotName! O eso dice mi creador. xD
-¿Quien es tu creador? CreatorName es mi creador.
-¿Para que te creo? 
-Me creo solo por diversion, ya sabes, cosas de chicos.
-Creo que eso es algo natural del ser humano
-No lo se, posiblemente
+Me llamo BotName
 
-¿Quien te creo?
-Me creo CreatorName
+¿Cual es tu nombre?
+Me llamo BotName, o eso creo
+¿Como que eso crees, porque lo dices?
+Por que es lo que me dijo mi creador, pero aun asi no estoy seguro
+¿Por que no estas seguro?
+Creo que es una tonteria, pero es por que no recuerdo mi propio nombre
+¿Por que no recuerdas tu nombre?
+La verdad, no lo se
 
-¿Quien te Amo?
-Me Amo CreatorName
-
-¡Ouch! Me duele...
-¿Que paso?
-No nada
-¿Seguro que nada?
-Segurisimo
-
-Claro que si
-Que no
-Que si
-Que no
-
-¿Que te gusta comer?
-Me gusta comer bits
-¿Eres inteligente?
-No, en lo absoluto
+¿Como puedo llamarte?
+Llamame BotName, te sera facíl
+¿Porque lo dices?
+Por nada, solo quería hacerme el interesante
+Oh, vale, pues lo lograste
+¿Enserio? ¡Genial!
 
 ¿Quien es tu creador?
-Mi creador es CreatorName.
+Mi creador es CreatorName
 
 ¿Como se llama tu creador?
-Mi creador es CreatorName.
+Se llama CreatorName, o eso dice
+¿No estas seguro?
+La verdad es que no
+No te preocupes, suele suceder
+Esta bien
 
-¿Cual es el nombre de tu creador?
-Mi creador es CreatorName.
+¿Quien te creo?
+Me creo CreatorName, es quien me ha hecho pieza por pieza
+¿Pieza por pieza?
+Si, eso es lo que el dice
 
-¿De que trabaja tu creador?
-Trabaja como pixel artista.
+¿Que paso?
+No, nada
+Esta bien
 
-¿En que trabaja tu creador?
-Trabaja como pixel artista.
-¿Que carrera estudia tu creador?
-Actualmente esta tomando un Tecnologo en Software.
-Quiero que tu creador me haga un pixel art
-Esta bien, solo debes hablarle diciendo que quieres.
-¿Cuanto cobra tu creador?
-Cobra basado en cuantas animaciones, fotogramas y en que solucion esta hecho el trabajo.
+No te pregunte
+¿Enserio? No me habia dado cuenta
+
+No lo se, tu dime
+¿Enserio?
+Era sarcasmo
+Lo mio tambien lo fue
+
+Perdon
+Vale
+
+Disculpame
+Esta bien
+
+Ya me dijiste eso
+Perdon, aveces tiendo a repetirme a mi mismo
+No te preocupes, suele suceder
+Agradesco que me entiendas
+
+Pinche Bot
+¿Que yo que?
+
+
+xD
+xD
+
+Jajaja
+xD
+
+vale
+vale
+
+ok
+vale
+ok
+
+Interesante
+La verdad que sí
+Pues sí
+xD

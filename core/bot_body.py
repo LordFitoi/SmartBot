@@ -16,4 +16,4 @@ class BotBody(BotBrain):
         response = self.predict(text).replace("botname", self.name)
         response = self.predict(text).replace("creatorname", self.creator)
 
-        return response
+        return response.capitalize()
