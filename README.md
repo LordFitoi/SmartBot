@@ -12,9 +12,10 @@ SmartBot cuenta con un generador de texto basado en cadenas de modelos de Bayes,
 con el objetivo de emular las propiedades de un modelo de Markov. Este recibe un texto de entrada que se reparte a todos los clasificadores y cada uno junto
 a la salida del clasificador anterior da el trozo correspondiente de la parte del texto. El tamaño maximo de texto depende exclusivamente de cuantos modelos
 encadenados se tenga. Tambien lo podemos expresar de la siguiente forma.
-<img src="https://render.githubusercontent.com/render/math?math=fn%20=%20NaiveBayesClassificator">
-<img src="https://render.githubusercontent.com/render/math?math=M%20=%20[f1,%20f2,%20%20...%20%20fn]">
-<img src="https://render.githubusercontent.com/render/math?math=fn(Vector(Context,%20Wn))=%20Wn+1">
+
+> <img src="https://render.githubusercontent.com/render/math?math=fn%20=%20NaiveBayesClassificator">
+> <img src="https://render.githubusercontent.com/render/math?math=M%20=%20[f1,%20f2,%20%20...%20%20fn]">
+> <img src="https://render.githubusercontent.com/render/math?math=fn(Vector(Context,%20Wn))=%20Wn+1">
 
 > *Nota: Este modelo es meramente experimental.*
 
