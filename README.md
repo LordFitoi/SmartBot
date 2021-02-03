@@ -40,7 +40,7 @@ Bot = BotBody()
 print(Bot("¿Por quien fuiste creado?")) # Output -> "Mi creador es WaffleFitoi"
 ```
 
-# ¿Como entreno al clasificador de texto?
+# ¿Como puedo entrenarlo?
 En la carpeta "assets" se encuentra el archivo "open_talk.txt" el cual contiene los datos de entrenamiento.
 **El dataset debe tener de manera consecutiva contexto y respuesta** para que el generador de texto aprenda a escribir.
 
