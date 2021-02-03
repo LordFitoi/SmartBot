@@ -15,6 +15,8 @@ encadenados se tenga. Tambien lo podemos expresar de la siguiente forma.
 
 > <img src="https://render.githubusercontent.com/render/math?math=fn%20=%20NaiveBayesClassificator">
 
+> <img src="https://render.githubusercontent.com/render/math?math=Wn%20=%20Word">
+
 > <img src="https://render.githubusercontent.com/render/math?math=M%20=%20[f1,%20f2,%20%20...%20%20fn]">
 
 > <img src="https://render.githubusercontent.com/render/math?math=fn(Vector(Context,%20Wn))=%20Wn+1">
