@@ -1,10 +1,10 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import ComplementNB
 import re, string
 
 
-class GaussianChainModel:
+class CNBChainModel:
     """
     Este modelo es un experiento en el cual se intenta combinar la capacidad de seguir secuencias
     de una cadena de markov y las grandes capacidades de los clasificadores bayesianos, concretamente
@@ -26,7 +26,7 @@ class GaussianChainModel:
     max_train_length = 0 # Indica hasta que parte del modelo ha sido entrenado.
 
     def __init__(self, input_length : int) -> None:
-        self.chain = [GaussianNB() for i in range(input_length)]
+        self.chain = [ComplementNB() for i in range(input_length)]
     
     def format(self, text : str) -> str:
         """Permite limpiar el texto de entrada"""
@@ -35,7 +35,7 @@ class GaussianChainModel:
 
         text = re.sub(",", " ,", text)
         text = re.sub("\s+", " ", text)
-
+        
         return re.sub("\n+", "", text)
         
 
@@ -47,6 +47,7 @@ class GaussianChainModel:
         blocked_list = [[] for n in range(len(self.chain))]
         x_input_list = [[] for n in range(len(self.chain))]
         y_input_list = [[] for n in range(len(self.chain))]
+
 
         for i in range(len(documents) - 1):
             if not documents[i].replace("\n", "") or not documents[i+1].replace("\n", ""): continue
@@ -70,15 +71,6 @@ class GaussianChainModel:
         """Permite entrenar el vectorizador de texto"""
         self.vectorizer.fit(documents)
 
-    def step_train(self, documents : list) -> None:
-        """Permite entrenar el modelo durante la ejecucion"""
-        x_input_list, y_input_list = self.create_dataset(documents)
-
-        for i in range(len(self.chain)):
-            if not x_input_list[i] or not y_input_list[i]: break
-            self.chain[i].partial_fit(x_input_list[i], y_input_list[i])
-            self.max_train_length = i
-
     def train(self, documents : list) -> None:
         """Permite entrenar el modelo con los datos de entrenamientos creados previamente"""
         x_input_list, y_input_list = self.create_dataset(documents)
@@ -96,7 +88,6 @@ class GaussianChainModel:
         for i, state in enumerate(self.chain):
             if current_word == "END" or i > self.max_train_length: break
             x_input = self.vectorizer.transform([f"{current_word} {text}"])
-
             output.append(state.predict(x_input.toarray())[0])
             current_word = output[-1]
 

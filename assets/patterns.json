@@ -1,0 +1,12 @@
+{
+    "UserName" : [
+        "me llamo (\\w+)",
+        "mi nombre es (\\w+)"
+    ],
+    "UserAge" : [
+        "tengo (\\d+)"
+    ],
+    "UserBirthday" : [
+        "cumplo el (.*)"
+    ]
+}

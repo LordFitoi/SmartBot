@@ -1,5 +1,5 @@
 from core.bot_brain import BotBrain
-import os
+import os, json
 
 class BotBody(BotBrain):
     """
@@ -11,9 +11,18 @@ class BotBody(BotBrain):
 
         corpus_path = os.path.join(main_path, "assets/open_talk.txt")
         BotBrain.__init__(self, bot_config["OutputLength"], corpus_path)
-    
-    def __call__(self, text : str) -> str:
-        response = self.predict(text).replace("botname", self.name)
-        response = self.predict(text).replace("creatorname", self.creator)
+
+        structures_path = os.path.join(main_path, "assets/structures.json")
+        with open(structures_path, "r") as jsonfile:
+            self.structure_list = json.load(jsonfile)
+
+        patterns_path = os.path.join(main_path, "assets/patterns.json")
+        with open(patterns_path, "r") as jsonfile:
+            self.pattern_list = json.load(jsonfile)
+
+
+    def __call__(self, text : str, user_data : dict) -> str:
+        response = self.predict(text, user_data).replace("botname", self.name)
+        response = response.replace("creatorname", self.creator)
 
         return response.capitalize()

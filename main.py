@@ -1,5 +1,6 @@
 from core.bot_body import BotBody
 import discord, json, os
+import datetime
 
 main_path = os.path.dirname(__file__)
 
@@ -10,17 +11,34 @@ with open(config_path, "r") as jsonfile:
 
 BotUser = BotBody(bot_config, main_path)
 class BotClient(discord.Client):
+    user_data = {}
+
     @staticmethod
     def is_DMChannel(message):
         return isinstance(message.channel, discord.channel.DMChannel)
 
+    def save_log(self, response, message):
+        date = datetime.datetime.now()
+        file_path = os.path.join(main_path, f"assets/log/{date.strftime('%d%b%y')}.txt")
+        with open(file_path, "a", encoding="utf-8") as text_file:
+            text_file.write(f"{message.content}\n{response}\n")
+        
     async def send_response(self, message):
-            response = BotUser(message.content)
-            
+            if message.author.id not in self.user_data:
+                self.user_data[message.author.id] = {}
+
+            response = BotUser(
+                message.content,
+                self.user_data[message.author.id]
+            )
+
+            self.save_log(response, message)
+
             print(f"{message.author}: {message.content}")
             print(f"@ Bot: {response}")
             
-            if response: await message.channel.send(response)
+            if response and response != "#notext":
+                await message.channel.send(response)
 
     async def on_ready(self) -> None:
         print('Logged on as {0}!'.format(self.user))
