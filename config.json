@@ -1,6 +1,6 @@
 {
-    "BotName" : "Talkerbot",
-    "CreatorName" : "WaffleFitoi",
+    "BotName" : "BotName",
+    "CreatorName" : "BotCreator",
     "OutputLength" : 25,
-    "BotToken" : "NDM1MTc5MjI0Njc3MjIwMzUy.Xxj7rw.HPPuSFW607TWHmyutFWXUe7f6QU"
+    "BotToken" : "YourToken"
 }
