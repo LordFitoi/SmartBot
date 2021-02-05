@@ -2,10 +2,9 @@
 Smartbot es un simple chatbot creado en Python con Sklearn
 
 # Novedades
-- Se elimino el clasificador de texto
-- Se ha eliminado el modulo de Spacy, ahora funciona exclusivamente con Sklearn.
-- Se añadio un archivo de configuracion.
-- Se limpio y documento el codigo.
+- Guardado de datos usando RegEx añadido
+- Recuperacion de historial (Recuerda el ultimo mensaje) añadido
+- Sistema de Etiquetas (Para remplazarlas por informacion variable) añadido
 
 # ¿Como funciona?
 SmartBot cuenta con un generador de texto basado en cadenas de modelos de Bayes, es decir son varios calsificadores de Bayes consecutivos y anidados entre si
