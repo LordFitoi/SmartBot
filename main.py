@@ -25,7 +25,10 @@ class BotClient(discord.Client):
         
     async def send_response(self, message):
             if message.author.id not in self.user_data:
-                self.user_data[message.author.id] = {}
+                self.user_data[message.author.id] = {
+                    "log" : [],
+                    "info" : {}
+                }
 
             response = BotUser(
                 message.content,

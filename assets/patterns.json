@@ -1,12 +1,29 @@
 {
     "UserName" : [
-        "me llamo (\\w+)",
-        "mi nombre es (\\w+)"
+        "me llamo ((\\w+\\s*)+)",
+        "mi nombre es ((\\w+\\s*)+)",
+        "puedes llamarme ((\\w+\\s*)+)",
+        "llamame ((\\w+\\s*)+)"
     ],
     "UserAge" : [
-        "tengo (\\d+)"
+        "tengo (\\d+)",
+        "mi edad es (\\d+)"
     ],
     "UserBirthday" : [
-        "cumplo el (.*)"
+        "cumplo el (.*)",
+        "mi cumpleaño es el (.*)"
+        
+    ],
+    "UserDogName" : [
+        "mi perro se llama ((\\w+\\s*)+)",
+        "el nombre de mi perro es ((\\w+\\s*)+)"
+    ],
+    "RememberText" : [
+        "recuerda lo siguiente (.*)",
+        "recuerda lo que te contare (.*)",
+        "te conte que (.*)",
+        "recuerda que (.*)",
+        "quiero que recuerdes (.*)"
+        
     ]
 }

@@ -27,6 +27,15 @@ class BotBrain:
             )
         return text.lower()
 
+    def default_response(self, text : str, label_dict : dict) -> str:
+        for label in label_dict:
+            if label.lower() in text:
+                text = random.choice(label_dict[label])
+                break
+        
+        return text.lower()
+
+
     def train(self, corpus_path : str) -> None:
         with open(corpus_path, "r", encoding="utf-8") as text_file:
             documents = text_file.readlines()
@@ -34,13 +43,14 @@ class BotBrain:
             self.generator.train(documents)
 
     def predict(self, text : str, user_data : str) -> str:
+        self.learn(text, user_data["info"])
         response = self.generator(text)
         response = self.replace_labels(response, self.structure_list)
-        response = self.replace_labels(response, user_data)
+        response = self.replace_labels(response, user_data["info"])
 
         if not re.search('[a-zA-Z]', response):
             response = "#NoText"
 
-        self.learn(text, user_data)
+        
         return response
       

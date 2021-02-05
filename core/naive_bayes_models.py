@@ -63,7 +63,7 @@ class CNBChainModel:
                 if term_x_input not in blocked_list[j]:
                     x_input_list[j].append(x_input)
                     y_input_list[j].append(word_sequence[j + 1])
-                    blocked_list[j].append(term_x_input)
+                    # blocked_list[j].append(term_x_input)
             
         return x_input_list, y_input_list
 

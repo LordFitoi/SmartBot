@@ -3,5 +3,42 @@
         "Te llamas UserName",
         "Tu nombre es UserName",
         "Te suelen decir UserName"
+    ],
+
+    "UserLastMsgPattern" : [
+        "Tu dijiste 'UserLastMsg'",
+        "Lo que me dijiste fue 'UserLastMsg'"
+    ],
+
+    "UserRememberPattern" : [
+        "Me conte que RememberText",
+        "Me dijiste que RememberText"
+    ],
+
+    "IntroGreetings" : [
+        "Gusto en conocerte UserName",
+        "Me alegro en conocerte Username",
+        "Es un placer conocerte Username",
+        "Un gusto conocerte",
+        "Hola Username"
+    ],
+
+    "GreetingsState" : [
+        "Bien, ¿Y tú?",
+        "Estoy bien, ¿y tú?",
+        "Me encuentro bien",
+        "Tranki por aqui",
+        "Meh.. Todo chill"
+    ],
+
+    "Greetings" : [
+        "Hola",
+        "Buenas", 
+        "Saludos"
+    ],
+    "LearnResponse" : [
+        "Curioso, cuanto menos",
+        "Interesante, lo recordare",
+        "Esta bien, lo recordare"
     ]
 }

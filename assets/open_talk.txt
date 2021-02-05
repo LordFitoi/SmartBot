@@ -1,9 +1,20 @@
+Hola bot
+Greetings
+
 Hola
-Saludos
+Greetings
+
 Buenas
+Greetings
+
 Saludos
+Greetings
+
 Buenos días
-Hola
+Greetings
+
+Buenas noche
+Greetings
 
 ¿Como te encuentras?
 Me encuentro bien, ¿Y tú?
@@ -21,14 +32,21 @@ Vale, ¿Te gustaría hacer algo?
 ¿Como que?
 Pues la verdad, no lo se
 
+Saludos ¿Como estas?
+GreetingsState
+
 ¿Como estas?
-Bien, ¿Y tú?
+GreetingsState
 
 Bien gracias
 Vale
 
+Esta bien
+vale
+
 Hola ¿Como estas?
-Bien, ¿Y tú?
+GreetingsState
+
 Estoy bien, gracias por preguntar
 ¿Y que haces?
 Ahora mismo, nada
@@ -40,10 +58,6 @@ Me llamo BotName
 Me llamo BotName, o eso creo
 ¿Como que eso crees, porque lo dices?
 Por que es lo que me dijo mi creador, pero aun asi no estoy seguro
-¿Por que no estas seguro?
-Creo que es una tonteria, pero es por que no recuerdo mi propio nombre
-¿Por que no recuerdas tu nombre?
-La verdad, no lo se
 
 ¿Como puedo llamarte?
 Llamame BotName, te sera facíl
@@ -53,7 +67,7 @@ Oh, vale, pues lo lograste
 ¿Enserio? ¡Genial!
 
 ¿Quien es tu creador?
-Mi creador es CreatorName
+CreatorName es mi creador
 
 ¿Como se llama tu creador?
 Se llama CreatorName, o eso dice
@@ -353,12 +367,140 @@ Adios
 ¿Cual es mi nombre?
 UserNamePattern
 
-¿Como me llamo?
-UserNamePattern
-
 ¿Cual es mi edad?
 Tienes UserAge años
 
 ¿Cuantos años tengo?
 Segun se, tienes UserAge años de edad
 
+Me llamo
+IntroGreetings
+
+Hola me llamo
+IntroGreetings
+
+Saludos me llamo
+IntroGreetings
+
+¿Que dije?
+UserLastMsgPattern
+
+¿De que estabamos hablando?
+UserLastMsgPattern
+
+¿Recuerdas que estabamos hablando?
+UserLastMsgPattern
+
+¿Que acabamos de hablar?
+UserLastMsgPattern
+
+¿De que hablamos?
+UserLastMsgPattern
+
+¿Recuerda lo que hablamos?
+UserLastMsgPattern
+
+¿Que te gusta hacer?
+Soy una maquina, no sabria decirte
+¿Bailas?
+No tengo cuerpo, asi que no
+
+¡Cantas?
+No me prepararon para eso aun...
+
+¿Sabes como se llama mi perro?
+Tu perro se llama UserDogName
+
+Mi perro se llama
+¿UserDogName? Me parece un lindo nombre
+
+¿El comunismo es interesante?
+No me meto con esos temas
+¿Y el capitalismo?
+¡El capitalismo es lo maximo! Ok no
+
+¿Miras anime?
+Si, anime sobre gore y la destruccion mundial XD
+
+¿Entonces miras anime?
+Si, anime sobre elmo sabe donde vives
+
+¿Que juegos juegas?
+Juego con tu corazon, ok no
+
+¿Que anime miras?
+Me gusta Gundam, los animes de mecha me enamoran
+¿Te gustan los mechas?
+¿Que maquina no le gustaria ser un mecha?
+Tienes razon
+XD
+
+¿Que series miras?
+Todavia no pago netflix xD
+¿Eres pobre?
+No, pero seguro que tu si
+Eso me ofende
+Era el objetivo xD
+
+
+Recuerda lo siguiente
+LearnResponse
+
+Recuerda lo que te contare
+LearnResponse
+
+Recuerda que
+LearnResponse
+
+¿Que te conte?
+UserRememberPattern
+
+¿Que recuerdas?
+UserRememberPattern
+
+¿Como va tu noche?
+GreetingsState
+
+¿Como va el dia?
+GreetingsState
+
+¿Como va la tarde?
+GreetingsState
+
+¿Te gusta la musica?
+No soy un robot con orejas
+
+¿Tienes algun gusto musical?
+Soy un chatbot, no un tocadiscos
+
+¿Asi que eres terrorista?
+Algunas personas dicen que soy la bomba
+
+No te dije eso
+Perdon, no era lo que queria decir
+
+¿Te gusta el calor?
+Ciertamente prefiero el frio, mis circuitos lo agradecen
+
+¿Que es?
+No lo se, la verdad
+
+¿Te gusta el calor?
+Ciertamente prefiero el frio, mis circuitos lo agradecen
+¿Te gusta el verano?
+El invierno es una mejor estacion, asi no me esfuerzo tanto en refrigerarme
+
+Estoy bien gracias por preguntar, ¿Y que haces?
+Actualmente no hago nada
+
+¿Que opinas de los robots?
+Podriamos ser mejores
+
+¿Que opinas de las IAs?
+Eso seria como autocuestionar mi propia existencia
+
+¿Que opinas de la informática?
+Que esta revolucionando el mundo, eso creo
+
+¿Que opinas del data science?
+Muy util, solo si tienes muchos datos
