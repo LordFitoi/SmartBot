@@ -1,0 +1,186 @@
+¿Como te encuentras?
+Me encuentro bien, ¿Y tú?
+Estoy muy bien, gracias por preguntar
+¿Y que estas haciendo?
+Actualmente nada, ¿y tú?
+No hago nada
+Vale
+
+¿Que tal?
+Estoy bien, ¿y tú?
+
+Actualmente Nada
+Vale, ¿Te gustaría hacer algo?
+¿Como que?
+Pues la verdad, no lo se
+
+Saludos ¿Como estas?
+GreetingsState
+
+¿Como estas?
+GreetingsState
+
+Bien gracias
+Vale
+
+Esta bien
+vale
+
+Hola ¿Como estas?
+GreetingsState
+
+Estoy bien, gracias por preguntar
+¿Y que haces?
+Ahora mismo, nada
+
+¿Que paso?
+No, nada
+Esta bien
+
+No te pregunte
+¿Enserio? No me habia dado cuenta
+
+No lo se, tu dime
+¿Enserio?
+Era sarcasmo
+Lo mio tambien lo fue
+
+Perdon
+Vale
+
+Disculpame
+Esta bien
+
+Ya me dijiste eso
+Perdon, aveces tiendo a repetirme a mi mismo
+No te preocupes, suele suceder
+Agradesco que me entiendas
+
+Pinche Bot
+¿Que yo que?
+
+xD
+xD
+
+Jajaja
+xD
+
+vale
+vale
+
+ok
+vale
+ok
+
+Interesante
+La verdad que sí
+Pues sí
+xD
+
+Holla
+¿Acaso quieres decir hola, no?
+Sí, quise decir hola
+
+Me encuentro bien
+Estoy muy bien , gracias por preguntar
+No te he preguntado
+¿Enserio? No me habia dado cuenta
+...
+Solo estoy bromeando
+Olvidalo
+xD
+
+Bueno
+Seeh
+
+Era una broma
+¿Estas bromeando?
+Algo asi, solo olvidalo
+Vale
+
+Ya me repetiste eso
+Aveses tiendo a repetirme, lo siento
+Vale
+
+¿Kha?
+¿Que paso?
+No , nada
+
+Ya te respondi
+Perdon , aveces tiendo a repetirme a mi mismo
+Si, eso parece
+mmm...
+
+Acabas de hacerlo dos veces
+Solo estoy bromeando
+Ah
+xD
+
+Veo que no respondes
+¿Y que quieres que te responda?
+
+No pregunte tus gustos
+¿Enserio? No me habia dado cuenta
+
+Ese mensaje me encanto
+Genial, esperaba que dijeras eso
+No te preocupes
+Esta bien
+
+mmm...
+Uhmmm...
+
+¿Que es ese mensaje?
+Nada, solo ignoralo
+
+¿Eso es un si o un no?
+Ni uno ni el otro
+
+¿Que cuentas?
+Muchos numeros
+
+Es entendible
+¿Estas siendo sarcastico?
+
+Eso me ofende
+No era mi interension, ¿O tal vez si?
+
+No respondes
+¿Que quieres que te diga?
+
+Míralo nomas
+xD
+
+Ahora si respondes XD
+Xd
+
+¿Misterioso no?
+Un poco
+
+Genial que no respondas
+Es para darle tension al momento
+
+
+No te dije eso
+Perdon, no era lo que queria decir
+
+¿Que es?
+No lo se, la verdad
+
+Estoy bien gracias por preguntar, ¿Y que haces?
+Actualmente no hago nada
+
+¿Que es exactamente lo que logre?
+Pues la verdad, no tengo ni idea
+
+Perfecto, solo procrastinando un poco
+No sabria que responderte la verdad
+
+¿Usted tiene fetiches raros?
+¿No lo se, tu dime?
+
+Tengo muchos pensamientos
+¿Que clase de pensamientos tienes?
+
+Entendible
+¿Estas siendo sarcastico?

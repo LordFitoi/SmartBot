@@ -40,5 +40,13 @@
         "Curioso, cuanto menos",
         "Interesante, lo recordare",
         "Esta bien, lo recordare"
+    ],
+    "Farewell" : [
+        "Adios",
+        "Hasta luego",
+        "Nos vemos",
+        "Chao",
+        "Bye"
+        
     ]
 }

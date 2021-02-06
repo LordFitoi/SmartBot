@@ -1,56 +1,49 @@
 from core.naive_bayes_models import CNBChainModel
 import re, random
 
-class BotBrain:
-    def __init__(self, output_length : int, corpus_path : str) -> None:
-        self.generator = CNBChainModel(output_length)
-        self.train(corpus_path)
-        self.log = []
 
-    def add_match(self, text : str, label : str, pattern : str, user_data : dict) -> None:
+class BotBrain:
+    def __init__(self, output_length: int, corpus_name: str) -> None:
+        self.generator = CNBChainModel(output_length)
+        self.train(corpus_name)
+
+    def add_match(self, text: str, label: str, pattern: str, user_data: dict) -> None:
         match = re.search(pattern, text.lower())
         if match:
             if not label in user_data:
                 user_data[label] = []
             user_data[label].append(match.group(1))
-    
-    def learn(self, text : str, user_data : dict) -> None:
-        for label in self.pattern_list:
-            for pattern in self.pattern_list[label]:
+
+    def learn(self, text: str, user_data: dict) -> None:
+        for label in self.structure_dict["patterns"]:
+            for pattern in self.structure_dict["patterns"][label]:
                 self.add_match(text, label, pattern, user_data)
 
-    def replace_labels(self, text : str, label_dict : dict) -> str:
+    def replace_labels(self, text: str, label_dict: dict) -> str:
         for label in label_dict:
-            text = text.replace(
-                label.lower(),
-                random.choice(label_dict[label])
-            )
+            text = text.replace(label.lower(), random.choice(label_dict[label]))
         return text.lower()
 
-    def default_response(self, text : str, label_dict : dict) -> str:
+    def default_response(self, text: str, label_dict: dict) -> str:
         for label in label_dict:
             if label.lower() in text:
                 text = random.choice(label_dict[label])
                 break
-        
+
         return text.lower()
 
+    def train(self, corpus_name: str) -> None:
+        corpus_samples = self.load_corpus(corpus_name)
+        self.generator.train_vectorizer(corpus_samples)
+        self.generator.train(corpus_samples)
 
-    def train(self, corpus_path : str) -> None:
-        with open(corpus_path, "r", encoding="utf-8") as text_file:
-            documents = text_file.readlines()
-            self.generator.train_vectorizer(documents)
-            self.generator.train(documents)
-
-    def predict(self, text : str, user_data : str) -> str:
+    def predict(self, text: str, user_data: str) -> str:
         self.learn(text, user_data["info"])
         response = self.generator(text)
-        response = self.replace_labels(response, self.structure_list)
+        response = self.replace_labels(response, self.structure_dict["structures"])
         response = self.replace_labels(response, user_data["info"])
 
-        if not re.search('[a-zA-Z]', response):
+        if not re.search("[a-zA-Z]", response):
             response = "#NoText"
 
-        
         return response
-      

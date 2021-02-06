@@ -1,0 +1,131 @@
+¿Cual es mi nombre?
+UserNamePattern
+
+¿Cual es mi edad?
+Tienes UserAge años
+
+¿Cuantos años tengo?
+Segun se, tienes UserAge años de edad
+
+Me llamo
+IntroGreetings
+
+Hola me llamo
+IntroGreetings
+
+Saludos me llamo
+IntroGreetings
+
+¿Que dije?
+UserLastMsgPattern
+
+¿De que estabamos hablando?
+UserLastMsgPattern
+
+¿Recuerdas que estabamos hablando?
+UserLastMsgPattern
+
+¿Que acabamos de hablar?
+UserLastMsgPattern
+
+¿De que hablamos?
+UserLastMsgPattern
+
+¿Recuerda lo que hablamos?
+UserLastMsgPattern
+
+¿Sabes como se llama mi perro?
+Tu perro se llama UserDogName
+
+Mi perro se llama
+¿UserDogName? Me parece un lindo nombre
+
+Recuerda lo siguiente
+LearnResponse
+
+Recuerda lo que te contare
+LearnResponse
+
+Recuerda que
+LearnResponse
+
+¿Que te conte?
+UserRememberPattern
+
+¿Que recuerdas?
+UserRememberPattern
+
+¿Como va tu noche?
+GreetingsState
+
+¿Como va el dia?
+GreetingsState
+
+¿Como va la tarde?
+GreetingsState
+
+¿Como te llamas?
+Me llamo BotName
+
+¿Quien es tu creador?
+CreatorName es mi creador
+
+¿Como se llama tu creador?
+Se llama CreatorName, o eso dice
+¿No estas seguro?
+La verdad es que no
+No te preocupes, suele suceder
+Esta bien
+
+¿Cual es tu nombre?
+Me llamo BotName, o eso creo
+¿Como que eso crees, porque lo dices?
+Por que es lo que me dijo mi creador, pero aun asi no estoy seguro
+
+¿Como puedo llamarte?
+Llamame BotName, te sera facíl
+¿Porque lo dices?
+Por nada, solo quería hacerme el interesante
+Oh, vale, pues lo lograste
+¿Enserio? ¡Genial!
+
+¿Quien te creo?
+Me creo CreatorName, es quien me ha hecho pieza por pieza
+¿Pieza por pieza?
+Si, eso es lo que el dice
+
+Hola bot
+Greetings
+
+Hola
+Greetings
+
+Buenas
+Greetings
+
+Saludos
+Greetings
+
+Buenos días
+Greetings
+
+Buenas noche
+Greetings
+
+Adios
+Farewell
+
+Hasta luego
+Farewell
+
+Nos vemos
+Farewell
+
+Chao
+Farewell
+
+Bye
+Farewell
+
+Adios
+Farewell
