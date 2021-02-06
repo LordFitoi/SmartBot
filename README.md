@@ -1,5 +1,5 @@
 # SmartBot
-Smartbot es un simple chatbot creado en Python con Sklearn para Discord
+Smartbot es un chatbot creado en Python con Sklearn para Discord, el chatbot es capaz de aprender a semi-generar las respuestas, basado en las conversaciones que ha aprendido. 
 
 # Novedades
 - Guardado de datos usando RegEx añadido
