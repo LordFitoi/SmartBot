@@ -23,6 +23,10 @@ encadenados se tenga. Tambien lo podemos expresar de la siguiente forma.
 > *Nota: Este modelo es meramente experimental.*
 
 
+Para recalcar, Smarthbot cuenta con la capacidad de reconocer patrones usando RegEx, lo que le permite recopilar informacion especifica que luego puede ser usada.
+Tambien un sistema para remplazar etiquetas que hayamos creado, por respuestas asignadas a dicha etiqueta.
+
+
 Ejemplo de preprocesamiento:
 ```
 ¿Estas jugando a Minecraft? -> ¿ estar jugar a minecraft ?
@@ -40,8 +44,13 @@ print(Bot("¿Por quien fuiste creado?")) # Output -> "Mi creador es WaffleFitoi"
 ```
 
 # ¿Como puedo entrenarlo?
-En la carpeta "assets" se encuentra el archivo "open_talk.txt" el cual contiene los datos de entrenamiento.
-**El dataset debe tener de manera consecutiva contexto y respuesta** para que el generador de texto aprenda a escribir.
+En la carpeta "assets/corpus" se encuentra un directiorio llamado "es" el cual contiene los datos de entrenamiento. Los archivos .txt son las las muestras de conversaciones a aprender por el bot, y los .json son archivos con patrones/respuestas que se utilizan en el codigo en casos especificos. Al entrenar el bot este carga todo los archivos del directorio.
+
+Para cargar un corpus personalizado, solo debes acceder al archivo "config.json" en la carpeta principal y editar el parametro "CorpusName" colocando el nombre de tu corpus.
+
+Si quieres usar alguna informacion dentro de los archivos .json cargados, solo debes llamar la variable, structure_list dentro de cualquier complemento heredado en el modulo de BotBody, y pasarle el nombre del archivo .json como key, de este modo obtendras la informacion obtenida de dicho corpus
+
+> *Nota: Los archivos estas separados solo para que sea facil su edicion.*
 
 # Requerimientos
 - Scikit-learn
