@@ -1,10 +1,11 @@
 from core.naive_bayes_models import CNBChainModel
-import re, random
+import re, random, os
 
 
 class BotBrain:
     def __init__(self, output_length: int, corpus_name: str) -> None:
-        self.generator = CNBChainModel(output_length)
+        stemma_state_path = os.path.join(self.main_path, "core/stemma_save.json")
+        self.generator = CNBChainModel(output_length, stemma_state_path)
         self.train(corpus_name)
 
     def add_match(self, text: str, label: str, pattern: str, user_data: dict) -> None:
@@ -34,6 +35,7 @@ class BotBrain:
 
     def train(self, corpus_name: str) -> None:
         corpus_samples = self.load_corpus(corpus_name)
+
         self.generator.train_vectorizer(corpus_samples)
         self.generator.train(corpus_samples)
 

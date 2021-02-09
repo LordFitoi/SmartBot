@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.naive_bayes import ComplementNB
+from core.stemmatizer import Stemmatizer
 import re, string
 
 
@@ -22,14 +23,17 @@ class CNBChainModel:
 
     """
 
+    stemmatizer = Stemmatizer()
     vectorizer = TfidfVectorizer(strip_accents="ascii")
     punctuation = (
         string.punctuation[:22] + "¡¿"
     )  # Contiene todos los simbolos de puntuacion.
     max_train_length = 0  # Indica hasta que parte del modelo ha sido entrenado.
 
-    def __init__(self, input_length: int) -> None:
+    def __init__(self, input_length: int, stemma_state_path: str) -> None:
         self.chain = [ComplementNB() for i in range(input_length)]
+        if stemma_state_path:
+            self.stemmatizer.load_model(stemma_state_path)
 
     def format(self, text: str) -> str:
         """Permite limpiar el texto de entrada"""
@@ -46,7 +50,7 @@ class CNBChainModel:
         Crea un dataset tomando como entrada una secuencia de palabras W y un context C
         de tal modo que Vector(C + Wn) sea el dato de entrada y Wn+1 sea el dato de salida
         """
-        blocked_list = [[] for n in range(len(self.chain))]
+
         x_input_list = [[] for n in range(len(self.chain))]
         y_input_list = [[] for n in range(len(self.chain))]
 
@@ -61,20 +65,34 @@ class CNBChainModel:
             for j in range(len(word_sequence) - 1):
                 if j >= len(self.chain):
                     break
-                x_input = self.vectorizer.transform([f"{word_sequence[j]} {context}"])
+
+                text = f"{context}"
+                stemma_text = self.get_text_stemma(text)
+
+                x_input = self.vectorizer.transform([stemma_text])
                 x_input = x_input.toarray()[0]
 
-                term_x_input = list(self.vectorizer.inverse_transform(x_input)[0])
-                if term_x_input not in blocked_list[j]:
-                    x_input_list[j].append(x_input)
-                    y_input_list[j].append(word_sequence[j + 1])
-                    # blocked_list[j].append(term_x_input)
+                x_input_list[j].append(x_input)
+                y_input_list[j].append(word_sequence[j + 1])
 
         return x_input_list, y_input_list
 
+    def get_text_stemma(self, text: str) -> str:
+        text = re.sub("\W|\d|[_]", " ", text.lower())
+        text = re.sub("\s+", " ", text)
+        text = re.sub(r"(\w)\1*", r"\1", text)
+
+        word_list = text.split()
+        text_stemma = [self.stemmatizer.get_stemma(word) for word in word_list]
+        text_stemma = " ".join([f"{root} {subfix}" for root, subfix in text_stemma])
+
+        return text_stemma
+
     def train_vectorizer(self, documents: str) -> None:
         """Permite entrenar el vectorizador de texto"""
-        self.vectorizer.fit(documents)
+        stemma_docs = [self.get_text_stemma(sample) for sample in documents]
+        self.vectorizer.fit(stemma_docs)
+        print(self.vectorizer.vocabulary_)
 
     def train(self, documents: list) -> None:
         """Permite entrenar el modelo con los datos de entrenamientos creados previamente"""
@@ -94,7 +112,11 @@ class CNBChainModel:
         for i, state in enumerate(self.chain):
             if current_word == "END" or i > self.max_train_length:
                 break
-            x_input = self.vectorizer.transform([f"{current_word} {text}"])
+
+            text = f"{text}"
+            stemma_text = self.get_text_stemma(text)
+            x_input = self.vectorizer.transform([stemma_text])
+
             output.append(state.predict(x_input.toarray())[0])
             current_word = output[-1]
 
