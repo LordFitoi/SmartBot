@@ -2,9 +2,8 @@
 Smartbot es un chatbot creado en Python con Sklearn para Discord, el chatbot es capaz de aprender a semi-generar las respuestas, basado en las conversaciones que ha aprendido. 
 
 # Novedades
-- Guardado de datos usando RegEx añadido
-- Recuperacion de historial (Recuerda el ultimo mensaje) añadido
-- Sistema de Etiquetas (Para remplazarlas por informacion variable) añadido
+- Se han eliminado algunos archivos obsoletos.
+- Se limpiado y documentado mejor el codigo.
 
 # ¿Como funciona?
 SmartBot cuenta con un generador de texto basado en cadenas de modelos de Bayes, es decir son varios calsificadores de Bayes consecutivos y anidados entre si
@@ -18,7 +17,7 @@ encadenados se tenga. Tambien lo podemos expresar de la siguiente forma.
 
 > <img src="https://render.githubusercontent.com/render/math?math=M%20=%20[f1,%20f2,%20%20...%20%20fn]">
 
-> <img src="https://render.githubusercontent.com/render/math?math=fn(Vector(Context,%20Wn))=%20Wn+1">
+> <img src="https://render.githubusercontent.com/render/math?math=fn(Vector(Context,%20Wn))=%20Wn">
 
 > *Nota: Este modelo es meramente experimental.*
 
