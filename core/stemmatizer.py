@@ -40,7 +40,7 @@ class Stemmatizer:
             part = word[i : i + 2]
             if not part in self.memory:
                 break
-            proba = math.log(self.memory[part] / len(word))
+            proba = math.log(self.memory[part])
 
             if prob_total == 0:
                 prob_total = proba

@@ -16,16 +16,16 @@ class BotClient(discord.Client):
     user_data = {}
 
     @staticmethod
-    def is_DMChannel(message):
+    def is_DMChannel(message: str) -> bool:
         return isinstance(message.channel, discord.channel.DMChannel)
 
-    def save_log(self, response, message):
+    def save_log(self, response: str, message: object) -> None:
         date = datetime.datetime.now()
         file_path = os.path.join(main_path, f"assets/log/{date.strftime('%d%b%y')}.txt")
         with open(file_path, "a", encoding="utf-8") as text_file:
             text_file.write(f"{message.content}\n{response}\n")
 
-    async def send_response(self, message, is_server=False):
+    async def send_response(self, message: object, is_server=False) -> None:
         if message.author.id not in self.user_data:
             self.user_data[message.author.id] = {"log": [], "info": {}}
 
@@ -54,5 +54,17 @@ class BotClient(discord.Client):
                 await self.send_response(message, is_server=True)
 
 
+def ConsoleChat():
+    """Permite utilizar al bot en la consola"""
+    fake_user = {"log": [], "info": {}}
+    while True:
+        text = input("User >> ")
+        if text.lower() == "exit":
+            break
+        else:
+            print(f"Bot: {BotUser(text, fake_user)}")
+
+
 if __name__ == "__main__":
     BotClient().run(bot_config["BotToken"])
+    # ConsoleChat()

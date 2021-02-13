@@ -46,7 +46,12 @@
         "Hasta luego",
         "Nos vemos",
         "Chao",
-        "Bye"
-        
+        "Bye"  
+    ],
+    "Creator" : [
+        "CreatorName es mi creador",
+        "Me creo CreatorName",
+        "Mi creador es CreatorName",
+        "CreatorName fue quien me creo"
     ]
 }

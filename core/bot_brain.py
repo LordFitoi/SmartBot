@@ -16,8 +16,8 @@ class BotBrain:
             user_data[label].append(match.group(1))
 
     def learn(self, text: str, user_data: dict) -> None:
-        for label in self.structure_dict["patterns"]:
-            for pattern in self.structure_dict["patterns"][label]:
+        for label in self.json_dict["patterns"]:
+            for pattern in self.json_dict["patterns"][label]:
                 self.add_match(text, label, pattern, user_data)
 
     def replace_labels(self, text: str, label_dict: dict) -> str:
@@ -35,17 +35,24 @@ class BotBrain:
 
     def train(self, corpus_name: str) -> None:
         corpus_samples = self.load_corpus(corpus_name)
-
         self.generator.train_vectorizer(corpus_samples)
         self.generator.train(corpus_samples)
 
     def predict(self, text: str, user_data: str) -> str:
-        self.learn(text, user_data["info"])
-        response = self.generator(text)
-        response = self.replace_labels(response, self.structure_dict["structures"])
-        response = self.replace_labels(response, user_data["info"])
 
+        response = self.generator(text)
+
+        # Recolecta informacion dada por el usuario
+        self.learn(text, user_data["info"])
+
+        # Si no encuentra caracteres de texto, remplaza el resultado por la etiqueta "NoContext"
         if not re.search("[a-zA-Z]", response):
-            response = "#NoText"
+            response = "NoContext"
+
+        # Remplaza las Etiquetas de "Structuras" por una de sus respuestas equivalentes
+        response = self.replace_labels(response, self.json_dict["structures"])
+
+        # Remplaza las Etiquetas de "Patrones" por la informacion obtenida del usuario
+        response = self.replace_labels(response, user_data["info"])
 
         return response

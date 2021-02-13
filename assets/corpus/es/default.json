@@ -1,0 +1,23 @@
+{
+    "UserName" : [
+        "No se tu nombre"
+    ],
+    "UserAge" : [
+        "No se tu edad"
+    ],
+    "UserBirthday" : [
+        "No se tu cumpleaños"    
+    ],
+    "UserDogName" : [
+        "No se como se llama tu perro"
+    ],
+    "RememberText" : [
+        "No me has contado nada"
+    ],
+    "NoContext" : [
+        "Mmm...",
+        "¿Kha?",
+        "Eh...",
+        "#NoText"
+    ]
+}

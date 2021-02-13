@@ -1,6 +1,6 @@
 {
-    "BotName" : "TheBotNameHere",
-    "CreatorName" : "YourNameHere",
+    "BotName" : "BotName",
+    "CreatorName" : "YourName",
     "OutputLength" : 30,
     "CorpusName" : "es",
     "BotToken" : "YourToken"
