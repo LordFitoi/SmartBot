@@ -1,7 +1,7 @@
 {
-    "BotName" : "Talkerbot",
-    "CreatorName" : "WaffleFitoi",
+    "BotName" : "YourBotName",
+    "CreatorName" : "YourName",
     "OutputLength" : 30,
     "CorpusName" : "es",
-    "BotToken" : "ODEwMzI2MzQ3NzAwMzcxNDU2.YCiBOA.MdS1UFG855Th-he5dpv0dEBa2qE"
+    "BotToken" : "YourTokenHere"
 } 
