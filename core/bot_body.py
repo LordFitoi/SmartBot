@@ -1,8 +1,9 @@
 from core.bot_brain import BotBrain
+from core.bot_actions import BotActions
 from core.corpus_loader import CorpusLoader
 
 
-class BotBody(BotBrain, CorpusLoader):
+class BotBody(BotBrain, BotActions, CorpusLoader):
     """
     Esta clase sirve para unir todos los componentes del bot.
     """
@@ -13,21 +14,13 @@ class BotBody(BotBrain, CorpusLoader):
         self.main_path = main_path
         self.json_dict = {}
 
+        self.state = "neutral"
+
         BotBrain.__init__(self, bot_config["OutputLength"], bot_config["CorpusName"])
 
     def __call__(self, text: str, user_data: dict) -> str:
+
         response = self.predict(text, user_data)
+        response = self.do_actions(response, user_data)
 
-        # Remplaza las KeyWords por la info del desarrollador
-        response = response.replace("botname", self.name)
-        response = response.replace("creatorname", self.creator)
-
-        # Remplaza la keyword "UserLastMsg" por el ultimo mensaje del usuario
-        if user_data["log"]:
-            response = response.replace("userlastmsg", user_data["log"][-1][0])
-
-        # Si la respuesta contiene alguna Etiqueta de Default, devuelve un mensaje Default
-        response = self.default_response(response, self.json_dict["default"])
-        user_data["log"].append([text, response])
-
-        return response.capitalize()
+        return response

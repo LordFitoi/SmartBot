@@ -3,6 +3,10 @@ import re, random, os
 
 
 class BotBrain:
+    """Esta clase se encarga de aprender y generar texto"""
+
+    max_learn_range = 4
+
     def __init__(self, output_length: int, corpus_name: str) -> None:
         stemma_state_path = os.path.join(self.main_path, "core/stemma_save.json")
         self.generator = CNBChainModel(output_length, stemma_state_path)
@@ -15,6 +19,10 @@ class BotBrain:
                 user_data[label] = []
             user_data[label].append(match.group(1))
 
+            # Si supera el maximo de objetos aprendidos, olvida los mas viejos
+            if len(user_data[label]) >= self.max_learn_range:
+                user_data[label].pop(0)
+
     def learn(self, text: str, user_data: dict) -> None:
         for label in self.json_dict["patterns"]:
             for pattern in self.json_dict["patterns"][label]:
@@ -22,16 +30,11 @@ class BotBrain:
 
     def replace_labels(self, text: str, label_dict: dict) -> str:
         for label in label_dict:
-            text = text.replace(label.lower(), random.choice(label_dict[label]))
-        return text.lower()
+            text_part = random.choice(label_dict[label])
+            pattern = f"{label}|{label.capitalize()}|{label.lower()}"
+            text = re.sub(pattern, text_part, text)
 
-    def default_response(self, text: str, label_dict: dict) -> str:
-        for label in label_dict:
-            if label.lower() in text:
-                text = random.choice(label_dict[label])
-                break
-
-        return text.lower()
+        return text
 
     def train(self, corpus_name: str) -> None:
         corpus_samples = self.load_corpus(corpus_name)
@@ -39,7 +42,6 @@ class BotBrain:
         self.generator.train(corpus_samples)
 
     def predict(self, text: str, user_data: str) -> str:
-
         response = self.generator(text)
 
         # Recolecta informacion dada por el usuario

@@ -9,7 +9,6 @@ class CorpusLoader:
     """
 
     def get_files_path(self, corpus_name="") -> list:
-
         corpus_files_path = []
         json_files_path = []
 

@@ -48,7 +48,7 @@
         "Chao",
         "Bye"  
     ],
-    "Creator" : [
+    "CreatorPattern" : [
         "CreatorName es mi creador",
         "Me creo CreatorName",
         "Mi creador es CreatorName",

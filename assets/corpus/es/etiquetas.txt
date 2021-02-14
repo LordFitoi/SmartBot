@@ -68,13 +68,13 @@ GreetingsState
 Me llamo BotName
 
 ¿Quien es tu creador?
-Creator
+CreatorPattern
 
 ¿Como se llama tu creador?
-Creator
+CreatorPattern
 
 ¿Quien te creo?
-Creator
+CreatorPattern
 
 ¿Que sabes de mi?
 Tu nombre es UserName, tienes UserAge años de edad y tu perro se llama UserDogName
@@ -86,7 +86,6 @@ Por que es lo que me dijo mi creador, pero aun asi no estoy seguro
 
 ¿Como puedo llamarte?
 Llamame BotName, te sera facíl
-
 
 
 

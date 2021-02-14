@@ -33,7 +33,7 @@ class CNBChainModel:
         if stemma_state_path:
             self.stemmatizer.load_model(stemma_state_path)
 
-    def format(self, text: str) -> str:
+    def format_input(self, text: str) -> str:
         """Permite limpiar el texto de entrada"""
         for symbol in self.punctuation:
             text = re.sub(f"[{symbol}]", f" {symbol} ", text.lower())
@@ -42,6 +42,18 @@ class CNBChainModel:
         text = re.sub("\s+", " ", text)
 
         return re.sub("\n+", "", text)
+
+    def format_output(self, token_list: list) -> str:
+        text = token_list[0].capitalize()
+        for i in range(len(token_list) - 1):
+            if token_list[i + 1] in ",!?":
+                text += f"{token_list[i + 1]} "
+            elif re.search("\W", text[-1]):
+                text += token_list[i + 1].capitalize()
+            else:
+                text += f" {token_list[i + 1]}"
+
+        return text
 
     def create_dataset(self, documents: list) -> list:
         """
@@ -58,7 +70,7 @@ class CNBChainModel:
             ):
                 continue
             context = documents[i]
-            word_sequence = [""] + self.format(documents[i + 1]).split() + ["END"]
+            word_sequence = [""] + self.format_input(documents[i + 1]).split() + ["END"]
 
             for j in range(len(word_sequence) - 1):
                 if j >= len(self.chain):
@@ -116,4 +128,4 @@ class CNBChainModel:
             output.append(state.predict(x_input.toarray())[0])
             current_word = output[-1]
 
-        return " ".join(output[:-1])
+        return self.format_output(output[:-1])

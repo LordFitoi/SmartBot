@@ -1,6 +1,6 @@
 from core.bot_body import BotBody
 import discord, json, os
-import datetime
+import datetime, random, time
 
 main_path = os.path.dirname(__file__)
 
@@ -17,30 +17,70 @@ class BotClient(discord.Client):
 
     @staticmethod
     def is_DMChannel(message: str) -> bool:
+        """Verifica si es un mensaje proveniente es de un canal privado"""
         return isinstance(message.channel, discord.channel.DMChannel)
 
     def save_log(self, response: str, message: object) -> None:
+        """Guarda el historial de conversacion"""
         date = datetime.datetime.now()
         file_path = os.path.join(main_path, f"assets/log/{date.strftime('%d%b%y')}.txt")
         with open(file_path, "a", encoding="utf-8") as text_file:
             text_file.write(f"{message.content}\n{response}\n")
 
-    async def send_response(self, message: object, is_server=False) -> None:
+    def load_content(self, name: str) -> dict:
+        """Carga contenido .json de la carpeta embeds"""
+        embed_path = os.path.join(main_path, f"assets/embeds/{name}.json")
+        with open(embed_path, "r", encoding="utf-8") as jsonfile:
+            content = json.load(jsonfile)
+
+        return content
+
+    def create_embed(self, content: dict) -> object:
+        """Crea un embed basado en el contenido de un diccionario"""
+        embed = discord.Embed(
+            title=content["title"],
+            description=content["description"],
+            color=int(content["color"], 16),
+        )
+
+        embed.set_author(name=bot_config["BotName"], icon_url=content["icon_url"])
+
+        for key, value in content["content"].items():
+            embed.add_field(name=key, value=value, inline=content["inline"])
+
+        embed.set_footer(text=content["footer"])
+
+        return embed
+
+    def create_response(self, message: object) -> list:
+        """Crea una respuesta en base al mensaje, y le da formato usando embeds"""
         if message.author.id not in self.user_data:
             self.user_data[message.author.id] = {"log": [], "info": {}}
 
         response = BotUser(message.content, self.user_data[message.author.id])
+        if response != "#NoText":
+            embed_content = self.load_content("msg_container")
 
+            face_images = self.load_content("icon_urls")
+            embed_content["icon_url"] = face_images[BotUser.state]
+            embed_content["description"] = f"`{response}`"
+            embed = self.create_embed(embed_content)
+        else:
+            embed = None
+        return response, embed
+
+    async def send_response(self, message: object, is_server=False) -> None:
+        """Envia una respuesta por el canal de proveniencia del mensaje."""
+        response, embed = self.create_response(message)
         self.save_log(response, message)
-
         print(f"{message.author}: {message.content}")
         print(f"@ Bot: {response}")
 
-        if response and response != "#notext":
+        if response and response != "#notext" and embed:
             if is_server:
-                await message.reply(response)
+                await message.reply(embed=embed)
             else:
-                await message.channel.send(response)
+                await message.channel.send(embed=embed)
 
     async def on_ready(self) -> None:
         print("Logged on as {0}!".format(self.user))
@@ -62,7 +102,11 @@ def ConsoleChat():
         if text.lower() == "exit":
             break
         else:
-            print(f"Bot: {BotUser(text, fake_user)}")
+            response = BotUser(text, fake_user)
+            if response != "#NoText":
+                print(f"Bot: {response}")
+            else:
+                print("*Parece que el bot no quiere responder*")
 
 
 if __name__ == "__main__":
