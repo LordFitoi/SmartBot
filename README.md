@@ -7,8 +7,7 @@ Smartbot es un chatbot creado en Python con Sklearn para Discord, el chatbot es 
 
 # ¿Como funciona?
 SmartBot cuenta con un generador de texto basado en cadenas de modelos de Bayes, es decir son varios calsificadores de Bayes consecutivos y anidados entre si
-con el objetivo de emular las propiedades de un modelo de Markov. Este recibe un texto de entrada que se reparte a todos los clasificadores y cada uno junto
-a la salida del clasificador anterior da el trozo correspondiente de la parte del texto. El tamaño maximo de texto depende exclusivamente de cuantos modelos
+con el objetivo de emular las propiedades de un modelo de Markov. Este recibe un texto de entrada que se reparte a todos los clasificadores, y cada uno da el trozo correspondiente de la parte del texto. El tamaño maximo de texto depende exclusivamente de cuantos modelos
 encadenados se tenga. Tambien lo podemos expresar de la siguiente forma.
 
 > <img src="https://render.githubusercontent.com/render/math?math=fn%20=%20NaiveBayesClassificator">
@@ -60,6 +59,9 @@ El bot tambien cuenta con la capacidad de representar sus estados de animo media
 
 Todo esto se puede modificar accediendo a la ruta "./assets/embeds", ahi encontra los archivos .json que se encargan de darle estructura a cada embed del bot.
 El embed que utiliza el bot para los mensajes se llama "msg_container.json", por defecto solo cuenta con el footer. **El archivo "icon_urls.json" no forma parte de ningun embed, este archivo cuenta con las url de los iconos que representan cada estado del bot.** En caso de querer añadir alguno mas solo debe añadir una key y ponerle de valor la url de alguna imagen que desee, los estados se cargan automaticamente cuando la variable "state" de BotBody sea igual a la key de a la de alguna imagen.
+
+# Configuracion
+Para terminar de configurar su bot, solo debe de acceder al archivo "config.json", en este encontrara la configuracion basica, desde el corpus a utilizar, el nombre del creador que dira, el nombre con el cual se llamara asi mismo, el tamaño de la salida maxima y el token de la interfaz de discord.
 
 # Requerimientos
 - Scikit-learn
