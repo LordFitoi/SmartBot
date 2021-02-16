@@ -43,7 +43,7 @@ class BotClient(discord.Client):
             color=int(content["color"], 16),
         )
 
-        embed.set_author(name=bot_config["BotName"], icon_url=content["icon_url"])
+        embed.set_thumbnail(url=content["icon_url"])
 
         for key, value in content["content"].items():
             embed.add_field(name=key, value=value, inline=content["inline"])
@@ -62,7 +62,11 @@ class BotClient(discord.Client):
             embed_content = self.load_content("msg_container")
 
             face_images = self.load_content("icon_urls")
-            embed_content["icon_url"] = face_images[BotUser.state]
+            if BotUser.state in face_images:
+                embed_content["icon_url"] = face_images[BotUser.state]
+            else:
+                embed_content["icon_url"] = random.choice(list(face_images.values()))
+
             embed_content["description"] = f"`{response}`"
             embed = self.create_embed(embed_content)
         else:

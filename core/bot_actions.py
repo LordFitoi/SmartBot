@@ -8,6 +8,7 @@ class BotActions:
 
     botname_pattern = "BotName|Botname|botname"
     creatorname_pattern = "CreatorName|Creatorname|creatorname"
+    current_action = None
 
     def add_bot_info(self, text: str) -> str:
         # Remplaza las KeyWords por la info del desarrollador
@@ -38,7 +39,27 @@ class BotActions:
 
         return text
 
+    def keep_quiet(self):
+        if random.uniform(0, 1) > self.config["KeepQuietProb"]:
+            self.current_action = "KeepQuiet"
+            self.state = "neutral"
+
+    def talk_again(self):
+        if random.uniform(0, 1) > self.config["TalkAgainProb"]:
+            self.current_action = None
+            self.state = "happy"
+
     def do_actions(self, text: str, user_data: dict) -> str:
+        for tag in self.action_funcs:
+            pattern = f"{tag}|{tag.capitalize()}|{tag.lower()}"
+            if not re.search(pattern, text):
+                continue
+
+            self.action_funcs[tag]()
+            break
+
+        if self.current_action:
+            text = self.current_action
 
         text = self.add_bot_info(text)
         text = self.get_last_msg(text, user_data)

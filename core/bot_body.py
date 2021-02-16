@@ -11,11 +11,18 @@ class BotBody(BotBrain, BotActions, CorpusLoader):
     def __init__(self, bot_config: dict, main_path: str) -> None:
         self.name = bot_config["BotName"]
         self.creator = bot_config["CreatorName"]
+
+        self.config = bot_config
+
         self.main_path = main_path
         self.json_dict = {}
 
-        self.state = "neutral"
+        self.state = "happy"
 
+        self.action_funcs = {
+            "KeepQuiet": self.keep_quiet,
+            "TalkAgain": self.talk_again,
+        }
         BotBrain.__init__(self, bot_config["OutputLength"], bot_config["CorpusName"])
 
     def __call__(self, text: str, user_data: dict) -> str:

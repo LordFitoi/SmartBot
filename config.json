@@ -3,5 +3,9 @@
     "CreatorName" : "YourName",
     "OutputLength" : 30,
     "CorpusName" : "es",
-    "BotToken" : "YourTokenHere"
+
+    "KeepQuietProb" : 0.75,
+    "TalkAgainProb" : 0.85,
+    
+    "BotToken" : "YourToken"
 } 

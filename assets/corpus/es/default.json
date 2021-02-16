@@ -20,10 +20,17 @@
         "Eh...",
         "#NoText"
     ],
-    "Jkidding" : [
-        "mmm...",
+    "KeepQuiet" : [
+        "Mmm...",
         "...",
         ":v",
-        "Me dijiste que me callara"
+        "Ujum",
+        "Ajam"
+    ],
+    "TalkAgain" : [
+        "Ya esta bien te perdono, pero no lo vuelvas a hacer",
+        "Esta bien, pero no lo vuelvas a hacer",
+        "Bueno, ya te perdono, no hay problema",
+        "Vale, te perdono"
     ]
 }

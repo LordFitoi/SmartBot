@@ -124,3 +124,24 @@ Farewell
 
 Adios
 Farewell
+
+Quiero que te calles
+KeepQuiet
+
+Callate
+KeepQuiet
+
+Perdon, puedes volver a hablar
+TalkAgain
+
+Perdoname, puedes volver a hablar
+TalkAgain
+
+Hablame, era broma lo de que te callaras
+TalkAgain
+
+Perdoname
+TalkAgain
+
+Perdon, hablame de nuevo
+TalkAgain
