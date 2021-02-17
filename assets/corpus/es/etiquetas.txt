@@ -88,7 +88,6 @@ Por que es lo que me dijo mi creador, pero aun asi no estoy seguro
 Llamame BotName, te sera facíl
 
 
-
 Hola bot
 Greetings
 
@@ -130,6 +129,22 @@ KeepQuiet
 
 Callate
 KeepQuiet
+
+Eres un bot feo
+KeepQuiet
+
+Eres un pendejo
+KeepQuiet
+
+Te puedes morir
+KeepQuiet
+
+Eres tonto
+KeepQuiet
+
+Eres un pendejo
+KeepQuiet
+
 
 Perdon, puedes volver a hablar
 TalkAgain

@@ -1,14 +1,22 @@
-from core.naive_bayes_models import CNBChainModel
+from core.tools.naive_bayes_models import CNBChainModel
+from core.modules.bot_module import BotModule
 import re, random, os
 
 
-class BotBrain:
+class BotBrain(BotModule):
     """Esta clase se encarga de aprender y generar texto"""
 
-    max_learn_range = 4
+    def __init__(self, chatbot: object) -> None:
+        self.chatbot = chatbot
 
-    def __init__(self, output_length: int, corpus_name: str) -> None:
-        stemma_state_path = os.path.join(self.main_path, "core/stemma_save.json")
+        self.max_learn_range = 4
+
+        corpus_name = self.chatbot.config["CorpusName"]
+        output_length = self.chatbot.config["OutputLength"]
+        stemma_state_path = os.path.join(
+            self.chatbot.main_path, "core/tools/stemma_save.json"
+        )
+
         self.generator = CNBChainModel(output_length, stemma_state_path)
         self.train(corpus_name)
 
@@ -24,8 +32,8 @@ class BotBrain:
                 user_data[label].pop(0)
 
     def learn(self, text: str, user_data: dict) -> None:
-        for label in self.json_dict["patterns"]:
-            for pattern in self.json_dict["patterns"][label]:
+        for label in self.chatbot.json_dict["patterns"]:
+            for pattern in self.chatbot.json_dict["patterns"][label]:
                 self.add_match(text, label, pattern, user_data)
 
     def replace_labels(self, text: str, label_dict: dict) -> str:
@@ -37,24 +45,23 @@ class BotBrain:
         return text
 
     def train(self, corpus_name: str) -> None:
-        corpus_samples = self.load_corpus(corpus_name)
+        corpus_samples, self.chatbot.json_dict = self.chatbot.corpus_loader.load(
+            corpus_name
+        )
         self.generator.train_vectorizer(corpus_samples)
         self.generator.train(corpus_samples)
 
-    def predict(self, text: str, user_data: str) -> str:
-        response = self.generator(text)
+    def process(self, **kwargs) -> str:
+        input_text = kwargs["InputText"]
+        user_data = kwargs["UserData"]
 
-        # Recolecta informacion dada por el usuario
+        text = self.generator(input_text)
         self.learn(text, user_data["info"])
 
-        # Si no encuentra caracteres de texto, remplaza el resultado por la etiqueta "NoContext"
-        if not re.search("[a-zA-Z]", response):
-            response = "NoContext"
+        if not re.search("[a-zA-Z]", text):
+            text = "NoContext"
 
-        # Remplaza las Etiquetas de "Structuras" por una de sus respuestas equivalentes
-        response = self.replace_labels(response, self.json_dict["structures"])
+        text = self.replace_labels(text, self.chatbot.json_dict["structures"])
+        text = self.replace_labels(text, user_data["info"])
 
-        # Remplaza las Etiquetas de "Patrones" por la informacion obtenida del usuario
-        response = self.replace_labels(response, user_data["info"])
-
-        return response
+        return text

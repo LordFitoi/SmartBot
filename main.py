@@ -1,4 +1,3 @@
-from core.bot_body import BotBody
 import discord, json, os
 import datetime, random, time
 
@@ -9,12 +8,16 @@ config_path = os.path.join(main_path, "config.json")
 with open(config_path, "r") as jsonfile:
     bot_config = json.load(jsonfile)
 
-BotUser = BotBody(bot_config, main_path)
+
+from core.smartbot import SmartBot
+from core.modules.bot_brain import BotBrain
+from core.modules.bot_actions import BotActions
+
+bot_modules = [BotBrain, BotActions]
+ChatBot = SmartBot(bot_config, bot_modules, main_path)
 
 
 class BotClient(discord.Client):
-    user_data = {}
-
     @staticmethod
     def is_DMChannel(message: str) -> bool:
         """Verifica si es un mensaje proveniente es de un canal privado"""
@@ -54,16 +57,14 @@ class BotClient(discord.Client):
 
     def create_response(self, message: object) -> list:
         """Crea una respuesta en base al mensaje, y le da formato usando embeds"""
-        if message.author.id not in self.user_data:
-            self.user_data[message.author.id] = {"log": [], "info": {}}
 
-        response = BotUser(message.content, self.user_data[message.author.id])
+        response = ChatBot(message.content, str(message.author.id))
         if response != "#NoText":
             embed_content = self.load_content("msg_container")
 
             face_images = self.load_content("icon_urls")
-            if BotUser.state in face_images:
-                embed_content["icon_url"] = face_images[BotUser.state]
+            if ChatBot.state in face_images:
+                embed_content["icon_url"] = face_images[ChatBot.state]
             else:
                 embed_content["icon_url"] = random.choice(list(face_images.values()))
 
@@ -100,13 +101,13 @@ class BotClient(discord.Client):
 
 def ConsoleChat():
     """Permite utilizar al bot en la consola"""
-    fake_user = {"log": [], "info": {}}
+    fake_user = "Anonimous"
     while True:
         text = input("User >> ")
         if text.lower() == "exit":
             break
         else:
-            response = BotUser(text, fake_user)
+            response = ChatBot(text, fake_user)
             if response != "#NoText":
                 print(f"Bot: {response}")
             else:

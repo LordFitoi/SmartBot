@@ -8,6 +8,9 @@ class CorpusLoader:
     contienen estructuras, respuestas constantes, patrones, etc...
     """
 
+    def __init__(self, main_path: str) -> None:
+        self.main_path = main_path
+
     def get_files_path(self, corpus_name="") -> list:
         corpus_files_path = []
         json_files_path = []
@@ -25,7 +28,7 @@ class CorpusLoader:
 
         return corpus_files_path, json_files_path
 
-    def load_corpus(self, corpus_name: str):
+    def load(self, corpus_name: str):
         path_list = self.get_files_path(corpus_name)
 
         corpus_samples = []
@@ -34,8 +37,9 @@ class CorpusLoader:
                 corpus_samples.extend(textfile.readlines() + [""])
 
         # Guarda la informacion de los archivos .json en json_dict
+        json_dict = {}
         for file_path, file_name in path_list[1]:
             with open(file_path, "r", encoding="utf-8") as jsonfile:
-                self.json_dict[file_name] = json.load(jsonfile)
+                json_dict[file_name] = json.load(jsonfile)
 
-        return corpus_samples
+        return corpus_samples, json_dict

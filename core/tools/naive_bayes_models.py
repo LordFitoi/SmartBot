@@ -1,7 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.naive_bayes import ComplementNB
-from core.stemmatizer import Stemmatizer
+from core.tools.stemmatizer import Stemmatizer
 import re, string
 
 
