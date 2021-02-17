@@ -51,7 +51,7 @@ class BotActions(BotModule):
         return text
 
     def keep_quiet(self):
-        if random.uniform(0, 1) < +self.chatbot.config["KeepQuietProb"]:
+        if random.uniform(0, 1) < self.chatbot.config["KeepQuietProb"]:
             self.current_action = "KeepQuiet"
             self.chatbot.state = "neutral"
 
