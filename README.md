@@ -4,16 +4,15 @@ Smartbot es un chatbot creado en Python con Sklearn para Discord, el chatbot es 
 # Novedades
 - Se ha cambiado la arquitectura del bot, ahora funciona algo mas parecido a Chatterbot
 
-# Como puedo utilizar
+# ¿Como puedo utilizarlo?
 Para poder usar a SmartBot, es necesario haber creado una aplicacion/usuario bot en discord, posteriomente procedes a configurar, accediendo al archivo "config.json",
 y por ultimo solo debes ejecutar el archivo "main.py"
 
-# ¿Como funciona?
+# ¿Como funciona? y ¿Como puedo entrenarlo?
 SmartBot cuenta con un generador de texto basado en cadenas de modelos de Bayes, es decir son varios calsificadores de Bayes consecutivos y anidados entre si
 con el objetivo de emular las propiedades de un modelo de Markov.
 
-# ¿Como puedo entrenarlo?
-En la carpeta "assets/corpus" se encuentra un directiorio llamado "es" el cual contiene los datos de entrenamiento. Los archivos .txt son las las muestras de conversaciones a aprender por el bot, y los .json son archivos con patrones/respuestas que se utilizan en el codigo en casos especificos. Al entrenar el bot este carga todo los archivos del directorio.
+Para entrenarlo, en la carpeta "assets/corpus" se encuentra un directiorio llamado "es" el cual contiene los datos de entrenamiento. Los archivos .txt son las las muestras de conversaciones a aprender por el bot, y los .json son archivos con patrones/respuestas que se utilizan en el codigo en casos especificos. Al entrenar el bot este carga todo los archivos del directorio.
 
 > *Nota: Los archivos estas separados solo para que sea facil su edicion.*
 
