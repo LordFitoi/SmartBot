@@ -1,11 +1,11 @@
 {
-    "BotName" : "TalkerBot",
-    "CreatorName" : "WaffleFitoi",
+    "BotName" : "YourBotName",
+    "CreatorName" : "YourName",
     "OutputLength" : 30,
     "CorpusName" : "es",
 
     "KeepQuietProb" : 0.35,
     "TalkAgainProb" : 0.45,
     
-    "BotToken" : "ODEwMzI2MzQ3NzAwMzcxNDU2.YCiBOA.wSZIhjaNnShuocp8zR9IkNvLd98"
+    "BotToken" : "DiscordTokenHere"
 } 
