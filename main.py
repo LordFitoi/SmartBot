@@ -8,14 +8,12 @@ config_path = os.path.join(main_path, "config.json")
 with open(config_path, "r") as jsonfile:
     bot_config = json.load(jsonfile)
 
-
 from core.smartbot import SmartBot
 from core.modules.bot_brain import BotBrain
 from core.modules.bot_actions import BotActions
 
 bot_modules = [BotBrain, BotActions]
 ChatBot = SmartBot(bot_config, bot_modules, main_path)
-
 
 class BotClient(discord.Client):
     @staticmethod
@@ -27,6 +25,7 @@ class BotClient(discord.Client):
         """Guarda el historial de conversacion"""
         date = datetime.datetime.now()
         file_path = os.path.join(main_path, f"assets/log/{date.strftime('%d%b%y')}.txt")
+
         with open(file_path, "a", encoding="utf-8") as text_file:
             text_file.write(f"{message.content}\n{response}\n")
 
@@ -63,8 +62,9 @@ class BotClient(discord.Client):
             embed_content = self.load_content("msg_container")
 
             face_images = self.load_content("icon_urls")
-            if ChatBot.state in face_images:
-                embed_content["icon_url"] = face_images[ChatBot.state]
+            state = ChatBot.user_data[str(message.author.id)]["state"]
+            if state in face_images:
+                embed_content["icon_url"] = face_images[state]
             else:
                 embed_content["icon_url"] = random.choice(list(face_images.values()))
 
@@ -77,9 +77,10 @@ class BotClient(discord.Client):
     async def send_response(self, message: object, is_server=False) -> None:
         """Envia una respuesta por el canal de proveniencia del mensaje."""
         response, embed = self.create_response(message)
-        self.save_log(response, message)
-        print(f"{message.author}: {message.content}")
-        print(f"@ Bot: {response}")
+        if bot_config["DebugMode"]:
+            self.save_log(response, message)
+            print(f"{message.author}: {message.content}")
+            print(f"@ Bot: {response}")
 
         if response and response != "#notext" and embed:
             if is_server:
@@ -92,11 +93,19 @@ class BotClient(discord.Client):
 
     async def on_message(self, message: object) -> None:
         if not message.author.bot:
-            if self.is_DMChannel(message):
-                await self.send_response(message)
+            if message.content.startswith(bot_config["prefix"]):
+                args = message.content.split(" ", 1)
+                command = args[0][len(bot_config["prefix"]):]
 
-            elif not self.is_DMChannel(message) and self.user in message.mentions:
-                await self.send_response(message, is_server=True)
+                if command.lower() == "fit":
+                    ChatBot.fit(args[1], str(message.author.id))
+
+            else:
+                if self.is_DMChannel(message):
+                    await self.send_response(message)
+
+                elif not self.is_DMChannel(message) and self.user in message.mentions:
+                    await self.send_response(message, is_server=True)
 
 
 def ConsoleChat():

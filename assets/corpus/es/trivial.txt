@@ -11,8 +11,14 @@ Perdon, no queria repetirme a mi mismo.
 ¿Como esta el dia?
 Soy una maquina, ¿como prodia saberlo?
 
-¿Como esta el clima?
+¿Como esta el clima? A
 Soy una maquina, ¿como prodia saberlo?
+
+¿Como esta el clima? B
+Algo brillante, el dia
+
+¿Como esta el clima? C
+Podria estar mejor el dia
 
 Crei que te bugeaste
 Es comun en las maquinas como yo

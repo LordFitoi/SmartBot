@@ -11,7 +11,6 @@ class BotActions(BotModule):
         self.chatbot = chatbot
         self.botname_pattern = "BotName|Botname|botname"
         self.creatorname_pattern = "CreatorName|Creatorname|creatorname"
-        self.current_action = None
 
         self.action_funcs = {
             "KeepQuiet": self.keep_quiet,
@@ -50,35 +49,35 @@ class BotActions(BotModule):
 
         return text
 
-    def keep_quiet(self):
+    def keep_quiet(self, user_data : dict):
         if random.uniform(0, 1) < self.chatbot.config["KeepQuietProb"]:
-            self.current_action = "KeepQuiet"
-            self.chatbot.state = "neutral"
+            user_data["state"] = "neutral"
+            user_data["current_action"] = "KeepQuiet"
 
-    def talk_again(self):
+    def talk_again(self, user_data : dict):
         if random.uniform(0, 1) <= self.chatbot.config["TalkAgainProb"]:
-            self.current_action = None
-            self.chatbot.state = "happy"
+            user_data["state"] = "happy"
+            user_data["current_action"] = None
 
     def process(self, **kwargs) -> str:
-        text = kwargs["InputText"]
+        input_text = kwargs["InputText"]
         user_data = kwargs["UserData"]
 
+        text = input_text
         for tag in self.action_funcs:
             pattern = f"{tag}|{tag.capitalize()}|{tag.lower()}"
             if not re.search(pattern, text):
                 continue
 
-            self.action_funcs[tag]()
+            self.action_funcs[tag](user_data)
             break
 
-        if self.current_action:
-            text = self.current_action
+        if user_data["current_action"]:
+            text = user_data["current_action"]
 
         text = self.add_bot_info(text)
         text = self.get_last_msg(text, user_data)
 
         text = self.do_default(text, self.chatbot.json_dict["default"])
-        user_data["log"].append([text, text])
-
+  
         return text

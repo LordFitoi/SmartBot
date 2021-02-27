@@ -11,8 +11,7 @@
     ],
     "UserBirthday" : [
         "cumplo el (.*)",
-        "mi cumpleaño es el (.*)"
-        
+        "mi cumpleaño es el (.*)"  
     ],
     "UserDogName" : [
         "mi perro se llama ((\\w+\\s*)+)",
@@ -24,6 +23,5 @@
         "te conte que (.*)",
         "recuerda que (.*)",
         "quiero que recuerdes (.*)"
-        
     ]
 }

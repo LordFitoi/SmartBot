@@ -2,7 +2,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.naive_bayes import ComplementNB
 from core.tools.stemmatizer import Stemmatizer
-import re, string
+import numpy as np
+import joblib
+import string
+import json
+import re
+
 
 
 class CNBChainModel:
@@ -26,12 +31,33 @@ class CNBChainModel:
     punctuation = (
         string.punctuation[:22] + "¡¿"
     )  # Contiene todos los simbolos de puntuacion.
-    max_train_length = 0  # Indica hasta que parte del modelo ha sido entrenado.
 
     def __init__(self, input_length: int, stemma_state_path: str) -> None:
         self.chain = [ComplementNB() for i in range(input_length)]
         if stemma_state_path:
             self.stemmatizer.load_model(stemma_state_path)
+    
+    def save_model(self, model_path, idf_path, vocab_path):
+        joblib.dump(self.chain, model_path)
+        joblib.dump(self.vectorizer.idf_, idf_path)
+        
+        with open(vocab_path, "w", encoding="utf-8") as jsonfile:
+            json.dump(self.vectorizer.vocabulary_, jsonfile)
+        
+        print("@ Model Checkpoint Completed")
+
+    def load_model(self, model_path, idf_path, vocab_path):
+        try:
+            self.chain = joblib.load(model_path)
+            self.vectorizer.idf_ = joblib.load(idf_path)
+            with open(vocab_path, "r", encoding="utf-8") as jsonfile:
+                self.vectorizer.vocabulary_ = json.load(jsonfile)
+
+            print("@ Model Checkpoint Loaded")
+        except Exception as exception:
+            print(exception)
+            return True
+
 
     def format_input(self, text: str) -> str:
         """Permite limpiar el texto de entrada"""
@@ -55,6 +81,14 @@ class CNBChainModel:
 
         return text
 
+    def get_tokens(self, documents: list) -> list:
+        token_list = set(["END", ""])
+        for sample in documents:
+            word_sequence = self.format_input(sample).split()
+            token_list = token_list.union(word_sequence)
+
+        return list(token_list)
+    
     def create_dataset(self, documents: list) -> list:
         """
         Crea un dataset tomando como entrada un context C de tal modo que Vector(C)
@@ -101,15 +135,20 @@ class CNBChainModel:
         stemma_docs = [self.get_text_stemma(sample) for sample in documents]
         self.vectorizer.fit(stemma_docs)
 
-    def train(self, documents: list) -> None:
+    def train(self, documents: list, partial = False) -> None:
         """Permite entrenar el modelo con los datos de entrenamientos creados previamente"""
         x_input_list, y_input_list = self.create_dataset(documents)
+        if not partial:
+            token_list = self.get_tokens(documents)
 
         for i in range(len(self.chain)):
             if not x_input_list[i] or not y_input_list[i]:
                 break
-            self.chain[i].fit(x_input_list[i], y_input_list[i])
-            self.max_train_length = i
+            
+            if not partial:
+                self.chain[i].partial_fit(x_input_list[i], y_input_list[i], token_list)
+            else:
+                self.chain[i].partial_fit(x_input_list[i], y_input_list[i])
 
         print("@ Model Training Completed")
 
@@ -120,12 +159,14 @@ class CNBChainModel:
         stemma_text = self.get_text_stemma(text)
 
         for i, state in enumerate(self.chain):
-            if current_word == "END" or i > self.max_train_length:
-                break
+            try:
+                if current_word == "END":
+                    break
 
-            x_input = self.vectorizer.transform([stemma_text])
+                x_input = self.vectorizer.transform([stemma_text])
 
-            output.append(state.predict(x_input.toarray())[0])
-            current_word = output[-1]
-
+                output.append(state.predict(x_input.toarray())[0])
+                current_word = output[-1]
+            except Exception as exception:
+                print(f"@ Error: {exception}")
         return self.format_output(output[:-1])

@@ -1,6 +1,5 @@
 import os, json
 
-
 class CorpusLoader:
     """
     Esta clase se encarga de obtener todos los datos de entrenamiento del corpus.
@@ -28,13 +27,14 @@ class CorpusLoader:
 
         return corpus_files_path, json_files_path
 
-    def load(self, corpus_name: str):
+    def load(self, corpus_name: str, train:bool):
         path_list = self.get_files_path(corpus_name)
 
         corpus_samples = []
-        for file_path in path_list[0]:
-            with open(file_path, "r", encoding="utf-8") as textfile:
-                corpus_samples.extend(textfile.readlines() + [""])
+        if train:
+            for file_path in path_list[0]:
+                with open(file_path, "r", encoding="utf-8") as textfile:
+                    corpus_samples.extend(textfile.readlines() + [""])
 
         # Guarda la informacion de los archivos .json en json_dict
         json_dict = {}
